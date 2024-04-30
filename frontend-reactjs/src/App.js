@@ -1,12 +1,9 @@
-import './App.css';
+import "./App.css";
+import MyRoutes from "./routes/MyRoutes.js";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-      <p>test font</p>
-      </header>
-    </div>
+    <MyRoutes/>
   );
 }
 
