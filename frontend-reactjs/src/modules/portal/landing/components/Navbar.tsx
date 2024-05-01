@@ -1,6 +1,6 @@
 import React from "react";
-import logo from "../../../src/assets/logo.png";
-import cartBtn from "../../../src/assets/cart-btn.png";
+import logo from "../../../../../src/assets/logo.png";
+import cartBtn from "../../../../../src/assets/cart-btn.png";
 
 function Navbar() {
   return (
