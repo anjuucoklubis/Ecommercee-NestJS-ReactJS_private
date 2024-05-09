@@ -1,0 +1,1 @@
+# this folder storage for test image category saved
