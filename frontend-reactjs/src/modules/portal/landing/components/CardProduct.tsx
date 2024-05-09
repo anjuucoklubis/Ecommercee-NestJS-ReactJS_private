@@ -1,104 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
+interface Product {
+  id: number;
+  thumbnail: string;
+  title: string;
+  price: number;
+}
 function CardProduct() {
-  const dataa = [
-    {
-      id: 1,
-      name: "Jam tangan mantap",
-      price: 100,
-      image: "https://flowbite.com/docs/images/products/apple-watch.png",
-    },
-    {
-      id: 2,
-      name: "Jam tangan mantap",
-      price: 100,
-      image: "https://flowbite.com/docs/images/products/apple-watch.png",
-    },
-    {
-      id: 3,
-      name: "Jam tangan mantap",
-      price: 100,
-      image: "https://flowbite.com/docs/images/products/apple-watch.png",
-    },
-    {
-      id: 4,
-      name: "Jam tangan mantap",
-      price: 100,
-      image: "https://flowbite.com/docs/images/products/apple-watch.png",
-    },
-    {
-      id: 5,
-      name: "Jam tangan mantap",
-      price: 100,
-      image: "https://flowbite.com/docs/images/products/apple-watch.png",
-    },
-    {
-      id: 6,
-      name: "Jam tangan mantap",
-      price: 100,
-      image: "https://flowbite.com/docs/images/products/apple-watch.png",
-    },
-    {
-      id: 7,
-      name: "Jam tangan mantap",
-      price: 100,
-      image: "https://flowbite.com/docs/images/products/apple-watch.png",
-    },
-    {
-      id: 8,
-      name: "Jam tangan mantap",
-      price: 100,
-      image: "https://flowbite.com/docs/images/products/apple-watch.png",
-    },
-    {
-      id: 9,
-      name: "Jam tangan mantap",
-      price: 100,
-      image: "https://flowbite.com/docs/images/products/apple-watch.png",
-    },
-    {
-      id: 10,
-      name: "Jam tangan mantap",
-      price: 100,
-      image: "https://flowbite.com/docs/images/products/apple-watch.png",
-    },
-    {
-      id: 11,
-      name: "Jam tangan mantap",
-      price: 100,
-      image: "https://flowbite.com/docs/images/products/apple-watch.png",
-    },
-    {
-      id: 12,
-      name: "Jam tangan mantap",
-      price: 100,
-      image: "https://flowbite.com/docs/images/products/apple-watch.png",
-    },
-    {
-      id: 13,
-      name: "Jam tangan mantap",
-      price: 100,
-      image: "https://flowbite.com/docs/images/products/apple-watch.png",
-    },
-    {
-      id: 14,
-      name: "Jam tangan mantap",
-      price: 100,
-      image: "https://flowbite.com/docs/images/products/apple-watch.png",
-    },
-  ];
+  const [products, setProducts] = useState<Product[]>([]);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    axios
+      .get<{ products: Product[] }>("https://dummyjson.com/products")
+      .then((res) => {
+        console.log(res.data.products);
+        setProducts(res.data.products);
+      })
+      .catch(err => {
+        setError(err.message);
+      });
+  }, []);
+  
 
   return (
     <div className="">
       <p style={{ fontSize: 30, fontWeight: "bold", marginLeft: 20 }}>
-        Start exploring Product.
+        Product.
         <p style={{ color: "#4B5563"}}>
-          Good things are waiting for you
+        Start exploring Product.
         </p>
       </p>
 
       <div className="flex flex-wrap justify-center">
-        {dataa.map((data) => (
+        {products.map((data) => (
           <div
             key={data.id}
             className="w-full max-w-sm mx-4 mb-8 bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden"
@@ -106,14 +42,14 @@ function CardProduct() {
             <a href="#">
               <img
                 className="w-full h-64 object-cover"
-                src={data.image}
+                src={data.thumbnail}
                 alt="product image"
               />
             </a>
             <div className="p-4">
               <a href="#">
                 <h5 className="text-xl font-semibold mb-2 text-gray-900">
-                  {data.name}
+                  {data.title}
                 </h5>
               </a>
               <div className="flex items-center mb-2">
