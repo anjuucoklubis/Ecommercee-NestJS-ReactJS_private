@@ -1,5 +1,4 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsOptional, IsString } from 'class-validator';
 
 export class CreateCategoryProductRequest {
   @ApiProperty({
@@ -27,11 +26,6 @@ export class UpdateCategoryProductRequest {
     description: 'city of the category product updated',
   })
   image?: string;
-}
-
-export class RemoveAddressRequest {
-  contact_id: number;
-  address_id: number;
 }
 
 export class CategoryProductResponse {

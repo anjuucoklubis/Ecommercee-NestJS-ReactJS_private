@@ -8,7 +8,6 @@ import { ValidationService } from 'src/common/validation.service';
 import {
   CreateProductRequest,
   ProductResponse,
-  UpdateProductRequest,
 } from 'src/model/product.model';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ProductValidation } from './product.validation';
@@ -38,6 +37,14 @@ export class ProductService {
 
       const createProduct = await this.prisma.product.create({
         data: { ...createProductRequest, image: file.filename },
+        include: {
+          category: {
+            select: {
+              id: true,
+              name: true,
+            },
+          },
+        },
       });
 
       const response: ProductResponse = {
@@ -64,6 +71,14 @@ export class ProductService {
     return this.prisma.product.findUnique({
       where: {
         id: +id,
+      },
+      include: {
+        category: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
       },
     });
   }

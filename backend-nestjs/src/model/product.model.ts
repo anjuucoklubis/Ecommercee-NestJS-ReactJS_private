@@ -1,5 +1,4 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsOptional, IsString } from 'class-validator';
 
 export class CreateProductRequest {
   @ApiProperty({
@@ -42,37 +41,37 @@ export class CreateProductRequest {
 export class UpdateProductRequest {
   @ApiProperty({
     example: 'elektronik',
-    description: 'name of the category product created',
+    description: 'name of the category product updated',
   })
   name?: string;
 
   @ApiProperty({
     example: 'elektronik adalah mantap',
-    description: 'description of the category product created',
+    description: 'description of the category product updated',
   })
   description?: string;
 
   @ApiProperty({
     example: '15000',
-    description: 'price of the category product created',
+    description: 'price of the category product updated',
   })
   price?: string;
 
   @ApiProperty({
     example: '10',
-    description: 'stock of the category product created',
+    description: 'stock of the category product updated',
   })
   stock?: string;
 
   @ApiProperty({
     example: 'image.jpg',
-    description: 'city of the category product created',
+    description: 'city of the category product updated',
   })
   image?: string;
 
   @ApiProperty({
     example: 1,
-    description: 'categoryId of the category product created',
+    description: 'categoryId of the category product updated',
   })
   categoryId?: number;
 }
