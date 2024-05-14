@@ -29,7 +29,7 @@ import { existsSync, unlinkSync } from 'fs';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Prisma } from '@prisma/client';
 
-const MAX_IMAGE_UPLOAD = 0.1 * 1024 * 1024;
+const MAX_IMAGE_UPLOAD = 5 * 1024 * 1024;
 
 @Controller('product')
 export class ProductController {

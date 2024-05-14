@@ -27,7 +27,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { StorageUploadCategory } from '../utils/storage-upload';
 import { existsSync, unlinkSync } from 'fs';
 
-const MAX_IMAGE_UPLOAD = 0.1 * 1024 * 1024;
+const MAX_IMAGE_UPLOAD = 5 * 1024 * 1024;
 
 @Controller('/categoryproduct')
 export class CategoryproductController {

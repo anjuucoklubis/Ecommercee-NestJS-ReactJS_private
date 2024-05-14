@@ -1,40 +1,19 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
+import VMLanding from "../VMLanding.ts";
+import { ProductLandingInterface } from "../Interface/LandingInterface.ts";
 
-interface Product {
-  id: number;
-  thumbnail: string;
-  title: string;
-  price: number;
-}
 function CardProduct() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    axios
-      .get<{ products: Product[] }>("https://dummyjson.com/products")
-      .then((res) => {
-        console.log(res.data.products);
-        setProducts(res.data.products);
-      })
-      .catch(err => {
-        setError(err.message);
-      });
-  }, []);
-  
+  const { products, imageSrcProduct,handleDirectToDetailProduct } = VMLanding();
 
   return (
     <div className="">
       <p style={{ fontSize: 30, fontWeight: "bold", marginLeft: 20 }}>
         Product.
-        <p style={{ color: "#4B5563"}}>
-        Start exploring Product.
-        </p>
+        <p style={{ color: "#4B5563" }}>Start exploring Product.</p>
       </p>
 
       <div className="flex flex-wrap justify-center">
-        {products.map((data) => (
+        {products.map((data: ProductLandingInterface) => (
           <div
             key={data.id}
             className="w-full max-w-sm mx-4 mb-8 bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden"
@@ -42,14 +21,14 @@ function CardProduct() {
             <a href="#">
               <img
                 className="w-full h-64 object-cover"
-                src={data.thumbnail}
+                src={`${imageSrcProduct}/${data.image}`}
                 alt="product image"
               />
             </a>
             <div className="p-4">
               <a href="#">
                 <h5 className="text-xl font-semibold mb-2 text-gray-900">
-                  {data.title}
+                  {data.name}
                 </h5>
               </a>
               <div className="flex items-center mb-2">
@@ -106,13 +85,14 @@ function CardProduct() {
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-lg font-bold text-gray-900">
-                  ${data.price}
+                  Rp. {data.price}
                 </span>
                 <a
                   href="#"
+                  onClick={() => handleDirectToDetailProduct(data.id)}
                   className="px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600"
                 >
-                  Add to Cart
+                Detail Product
                 </a>
               </div>
             </div>

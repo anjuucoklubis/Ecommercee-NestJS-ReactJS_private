@@ -19,7 +19,8 @@ export default function MyRoutes() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/detail-product" element={<DetailProduct />} />
+        <Route path="/detail-product/:productId" element={<DetailProduct />} />
+        {/* <Route path="/detail-product/:productId" element={DetailProduct} /> */}
 
         <Route path="auth/*" element={<AuthLayout />} />
         <Route path="admin/*" element={<AdminLayout />} />
