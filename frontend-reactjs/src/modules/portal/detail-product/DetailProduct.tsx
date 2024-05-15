@@ -4,6 +4,7 @@ import FooterComponents from "../components/FooterComponents.tsx";
 import SpesifikasiProduct from "./components/SpesifikasiProduct.tsx";
 import VMLanding from "../landing/VMLanding.ts";
 import VMDetailProduct from "./VMDetailProduct.ts";
+import PenilaianProduct from "./components/PenilaianProduct.tsx";
 
 function DetailProduct() {
   const { productDetail,imageSrc } = VMDetailProduct();
@@ -56,7 +57,7 @@ function DetailProduct() {
               <div className="px-5 pb-5">
                 <a href="#">
                   <h5 className="text-xl font-semibold tracking-tight text-red-900 dark:text-white">
-                    Rp. {productDetail.price}
+                    Rp. {productDetail.price} - Stock {productDetail.stock}
                   </h5>
                 </a>
               </div>
@@ -163,6 +164,8 @@ function DetailProduct() {
             }}
           >
             <SpesifikasiProduct />
+            <PenilaianProduct/>
+
           </div>
           <FooterComponents />
         </>

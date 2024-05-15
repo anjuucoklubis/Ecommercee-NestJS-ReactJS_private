@@ -1,129 +1,63 @@
 import React from "react";
+import VMDetailProduct from "../VMDetailProduct.ts";
 
 function SpesifikasiProduct() {
-  return (
-    <div>
-      {/* <div classNameName="relative overflow-x-auto">
-        <table classNameName="w-6/12 text-xl text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead classNameName="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              <th scope="col" classNameName="px-6 py-3 rounded-s-lg">
-              Spesifikasi Produk              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr classNameName= "bg-white dark:bg-gray-800">
-              <th
-                scope="row"
-                classNameName="flex px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" 
-                style={{justifyContent:"space-around"}}
-              >
-                Apple MacBook Pro 17" 
-                <th style={{marginLeft: 950}}>wkk</th>
-              </th>
-            </tr>
-          </tbody>
-        </table>
-      </div> */}
+  const { productDetail, imageSrc } = VMDetailProduct();
 
-      <div className="p-20 border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-        <time className="text-lg font-semibold text-gray-900 dark:text-white">
-          Spesifikasi Produk
-        </time>
-        <ol className="mt-3 divide-y divider-gray-200 dark:divide-gray-700">
-          <li>
-            <a
-              href="#"
-              className="items-center block p-3 sm:flex hover:bg-gray-100 dark:hover:bg-gray-700"
+  return (
+    <div className="container mx-auto px-4 sm:px-6   lg:px-8 mt-5">
+      <div className="grid gap-6 lg:gap-8">
+        <div className="p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-gray-500/20 dark:shadow-none">
+          <div>
+            <div className="flex items-center gap-4">
+              {/* <div className="h-16 w-16 bg-red-50 dark:bg-red-800/20 flex items-center justify-center rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" className="w-7 h-7 stroke-red-500">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                    </svg>
+                </div> */}
+
+              <span className="text-lg font-semibold text-gray-900 dark:text-white">
+                Deskripsi & Spesifikasi Produk
+              </span>
+            </div>
+            <br />
+            <ul
+              className="spec-list"
+              style={{ padding: 0, listStyleType: "none" }}
             >
-              <img
-                className="w-5 h-5 mb-3 me-3 rounded-full sm:mb-0"
-                src="https://cdn-icons-png.flaticon.com/128/15673/15673832.png"
-                alt="Laura Romeros image"
-              />
-              <div className="text-gray-600 dark:text-gray-400">
-                <div className="text-base font-normal">
-                  Kategori :{" "}
-                  <span
-                    style={{ marginLeft: 10 }}
-                    className="font-medium text-gray-900 dark:text-white"
-                  >
-                    Laura Romeros
-                  </span>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="items-center block p-3 sm:flex hover:bg-gray-100 dark:hover:bg-gray-700"
-            >
-              <img
-                className="w-5 h-5 mb-3 me-3 rounded-full sm:mb-0"
-                src="https://cdn-icons-png.flaticon.com/128/15673/15673832.png"
-                alt="Laura Romeros image"
-              />
-              <div className="text-gray-600 dark:text-gray-400">
-                <div className="text-base font-normal">
-                  Kategori :{" "}
-                  <span
-                    style={{ marginLeft: 10 }}
-                    className="font-medium text-gray-900 dark:text-white"
-                  >
-                    Laura Romeros
-                  </span>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="items-center block p-3 sm:flex hover:bg-gray-100 dark:hover:bg-gray-700"
-            >
-              <img
-                className="w-5 h-5 mb-3 me-3 rounded-full sm:mb-0"
-                src="https://cdn-icons-png.flaticon.com/128/15673/15673832.png"
-                alt="Laura Romeros image"
-              />
-              <div className="text-gray-600 dark:text-gray-400">
-                <div className="text-base font-normal">
-                  Kategori :{" "}
-                  <span
-                    style={{ marginLeft: 10 }}
-                    className="font-medium text-gray-900 dark:text-white"
-                  >
-                    Laura Romeros
-                  </span>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="items-center block p-3 sm:flex hover:bg-gray-100 dark:hover:bg-gray-700"
-            >
-              <img
-                className="w-5 h-5 mb-3 me-3 rounded-full sm:mb-0"
-                src="https://cdn-icons-png.flaticon.com/128/15673/15673832.png"
-                alt="Laura Romeros image"
-              />
-              <div className="text-gray-600 dark:text-gray-400">
-                <div className="text-base font-normal">
-                  Kategori :{" "}
-                  <span
-                    style={{ marginLeft: 10 }}
-                    className="font-medium text-gray-900 dark:text-white"
-                  >
-                    Laura Romeros
-                  </span>
-                </div>
-              </div>
-            </a>
-          </li>
-        </ol>
+                <li style={{ marginBottom: "10px" }}>
+                <strong style={{ display: "inline-block", width: "150px" }}>
+                  Deskripsi
+                </strong>
+                {productDetail?.description}
+              </li>
+              <li style={{ marginBottom: "10px" }}>
+                <strong style={{ display: "inline-block", width: "150px" }}>
+                  Kategori
+                </strong>
+                {productDetail?.category.name}
+              </li>
+              <li>
+                <strong style={{ display: "inline-block", width: "150px" }}>
+                  Stok
+                </strong>
+                {productDetail?.stock}
+              </li>
+              <li>
+                <strong style={{ display: "inline-block", width: "150px" }}>
+                  Negara Asal
+                </strong>
+                Indonesia
+              </li>
+              <li>
+                <strong style={{ display: "inline-block", width: "150px" }}>
+                  Dikirim Dari
+                </strong>
+                KAB. BANDUNG
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   );

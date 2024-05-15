@@ -3,7 +3,8 @@ import VMLanding from "../VMLanding.ts";
 import { ProductLandingInterface } from "../Interface/LandingInterface.ts";
 
 function CardProduct() {
-  const { products, imageSrcProduct,handleDirectToDetailProduct } = VMLanding();
+  const { products, imageSrcProduct, handleDirectToDetailProduct } =
+    VMLanding();
 
   return (
     <div className="">
@@ -85,14 +86,14 @@ function CardProduct() {
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-lg font-bold text-gray-900">
-                  Rp. {data.price}
+                  Rp. {data.price} - Stock {data.stock}
                 </span>
                 <a
                   href="#"
                   onClick={() => handleDirectToDetailProduct(data.id)}
                   className="px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600"
                 >
-                Detail Product
+                  Detail Product
                 </a>
               </div>
             </div>

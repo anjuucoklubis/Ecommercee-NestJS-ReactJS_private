@@ -8,7 +8,7 @@ export interface ProductLandingInterface {
   id: number;
   name: string;
   description: string;
-  stcok: string;
+  stock: string;
   price: number;
   image: string;
 }

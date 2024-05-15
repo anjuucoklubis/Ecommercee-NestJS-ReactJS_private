@@ -5,7 +5,11 @@ interface ProductDetail {
     name: string;
     price: number;
     image: string;
+    stock: string;
     description: string;
+    category: {
+      name: string;
+    }
     // tambahkan properti lain sesuai kebutuhan
   }
 function VMDetailProduct() {
