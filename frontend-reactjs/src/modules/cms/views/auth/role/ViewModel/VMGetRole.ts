@@ -42,6 +42,7 @@ function VMGetRole() {
       }
       const data: {
         name: string;
+        role_id: number;
         createdAt: string;
         updatedAt: string;
       } = await response.json();

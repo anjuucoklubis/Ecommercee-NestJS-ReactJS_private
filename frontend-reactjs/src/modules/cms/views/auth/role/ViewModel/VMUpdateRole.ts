@@ -14,6 +14,7 @@ function VMUpdateRole() {
   const [formDataUpdate, setFormDataUpdate] =
     useState<FormDataUpdateRoleInterface>({
       name: "",
+      role_id: 0,
     });
 
   const handleInputChangeUpdateRole = (event) => {
@@ -31,11 +32,12 @@ function VMUpdateRole() {
       if (!response.ok) {
         throw new Error("Failed to fetch role detail");
       }
-      const data: { name: string } = await response.json();
+      const data: { name: string; role_id: number } = await response.json();
       setRoleDetail(data);
       setShowModalDetailRoleForUpdate(true);
       setFormDataUpdate({
         name: data.name,
+        role_id: data.role_id,
       });
     } catch (error) {
       console.error("Error fetching role detail:", error);
@@ -45,6 +47,11 @@ function VMUpdateRole() {
   const handleSubmitUpdateRole = async (event) => {
     event.preventDefault();
     try {
+      const formDataToSend = {
+        ...formDataUpdate,
+        role_id: Number(formDataUpdate.role_id),
+      };
+
       const response = await fetch(
         `http://localhost:3000/role/update/${roleId}`,
         {
@@ -52,13 +59,20 @@ function VMUpdateRole() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(formDataUpdate),
-          credentials: "include",
+          body: JSON.stringify(formDataToSend),
         }
       );
-      if (response.ok) {
-        console.log("Role updated successfully!");
-        setShowModalDetailRoleForUpdate(false);
+
+      if (!response.ok) {
+        throw new Error("Failed to update role");
+      }
+      const updatedData = await response.json();
+      if (
+        updatedData &&
+        updatedData.name &&
+        updatedData.role_id !== formDataUpdate.name &&
+        formDataUpdate.role_id
+      ) {
         toast.success("Role berhasil diubah", {
           position: "top-right",
           onClose: () => {
@@ -66,12 +80,11 @@ function VMUpdateRole() {
           },
         });
       } else {
-        const responseData = await response.json();
-        toast.error(responseData.message || "Failed to update Role");
-        console.error("Failed to update Role:", response.statusText);
+        toast.info("Tidak ada perubahan yang dilakukan");
       }
     } catch (error) {
-      console.error("Error updating Role:", error);
+      console.error("Error updating role:", error);
+      toast.error("Role ID sudah digunakan");
     }
   };
 

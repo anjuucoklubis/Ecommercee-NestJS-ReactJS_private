@@ -2,6 +2,7 @@ import {
   BadRequestException,
   Inject,
   Injectable,
+  NotFoundException,
   forwardRef,
 } from '@nestjs/common';
 import { ValidationService } from 'src/common/validation.service';
@@ -12,7 +13,6 @@ import {
 } from 'src/model/role.model';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { RoleValidation } from './role.validation';
-import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class RoleService {
@@ -27,6 +27,14 @@ export class RoleService {
       const createRoleRequest: CreateRoleRequest =
         this.validationService.validate(RoleValidation.CREATE, request);
 
+      const existingRole = await this.prisma.role.findUnique({
+        where: { role_id: request.role_id },
+      });
+
+      if (existingRole) {
+        throw new BadRequestException('role_id already exists');
+      }
+
       const createRole = await this.prisma.role.create({
         data: { ...createRoleRequest },
       });
@@ -34,6 +42,7 @@ export class RoleService {
       const response: RoleResponse = {
         id: createRole.id,
         name: createRole.name,
+        role_id: createRole.role_id,
       };
 
       return response;
@@ -54,48 +63,35 @@ export class RoleService {
     });
   }
 
-  // async update(
-  //   id: number,
-  //   request: UpdateRoleRequest,
-  // ): Promise<RoleResponse> {
-  //   try {
-  //     const updateRequest: UpdateRoleRequest =
-  //       this.validationService.validate(
-  //         RoleValidation.UPDATE,
-  //         request,
-  //       );
-  //     const roleId = parseInt(id.toString(), 10);
-  //     const updatedData: Partial<Prisma.RoleUpdateInput> = {};
-  //     if (updateRequest.name) {
-  //       updatedData.name = updateRequest.name;
-  //     }
+  async update(request: UpdateRoleRequest): Promise<RoleResponse> {
+    try {
+      const updateRoleRequest: UpdateRoleRequest =
+        this.validationService.validate(RoleValidation.UPDATE, request);
 
-  //     if (Object.keys(updatedData).length > 0) {
-  //       return await this.prisma.role.update({
-  //         where: {
-  //           id: roleId,
-  //         },
-  //         data: updatedData,
-  //       });
-  //     } else {
-  //       throw new Error('Nothing to update');
-  //     }
-  //   } catch (error) {
-  //     if (error instanceof BadRequestException) {
-  //       throw new Error('Validation failed: ' + error.message);
-  //     } else {
-  //       throw new Error('Failed to update role');
-  //     }
-  //   }
-  // }
+      const existingRole = await this.prisma.role.findUnique({
+        where: { id: request.id },
+      });
 
-  async update (id: number, data: UpdateRoleRequest){  
-    return await this.prisma.role.update({
-        where: {
-            id:id,
-        },data
-    });
-}
+      if (!existingRole) {
+        throw new NotFoundException('Role tidak ditemukan');
+      }
+
+      const updateRole = await this.prisma.role.update({
+        where: { id: request.id },
+        data: { ...updateRoleRequest },
+      });
+
+      const response: RoleResponse = {
+        id: updateRole.id,
+        name: updateRole.name,
+        role_id: updateRole.role_id,
+      };
+
+      return response;
+    } catch (error) {
+      throw new Error('Gagal memperbarui role: ' + error.message);
+    }
+  }
 
   async remove(id: number) {
     return await this.prisma.role.delete({

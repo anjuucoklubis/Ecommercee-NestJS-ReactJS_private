@@ -169,6 +169,24 @@ function Role() {
                             onChange={handleInputChange}
                           />
                         </div>
+                        <div className="col-span-2">
+                          <label
+                            htmlFor="role_id"
+                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                          >
+                            Role ID
+                          </label>
+                          <input
+                            type="text"
+                            name="role_id"
+                            id="role_id"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="Role ID..."
+                            required
+                            value={formData.role_id}
+                            onChange={handleInputChange}
+                          />
+                        </div>
                       </div>
                       <button
                         type="submit"
@@ -249,6 +267,24 @@ function Role() {
                             placeholder={""}
                             required
                             value={getRoleDetail.name}
+                            disabled={true}
+                          />
+                        </div>
+                        <div className="col-span-2">
+                          <label
+                            htmlFor="name"
+                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                          >
+                            Role ID
+                          </label>
+                          <input
+                            type="text"
+                            name="name"
+                            id="name"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder={""}
+                            required
+                            value={getRoleDetail.role_id}
                             disabled={true}
                           />
                         </div>
@@ -357,6 +393,23 @@ function Role() {
                             onChange={handleInputChangeUpdateRole}
                           />
                         </div>
+                        <div className="col-span-2">
+                          <label
+                            htmlFor="name"
+                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                          >
+                            Role ID
+                          </label>
+                          <input
+                            type="text"
+                            name="role_id"
+                            id="role_id"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder={""}
+                            value={formDataUpdate.role_id}
+                            onChange={handleInputChangeUpdateRole}
+                          />
+                        </div>
                       </div>
                       <button
                         type="submit"
@@ -391,6 +444,9 @@ function Role() {
                 Nama Role
               </th>
               <th scope="col" className="px-6 py-3">
+                Role ID
+              </th>
+              <th scope="col" className="px-6 py-3">
                 Aksi
               </th>
             </tr>
@@ -403,6 +459,9 @@ function Role() {
               >
                 <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   {data.name}
+                </td>
+                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  {data.role_id}
                 </td>
                 <td className="flex px-6 py-4" style={{ flexDirection: "row" }}>
                   <button

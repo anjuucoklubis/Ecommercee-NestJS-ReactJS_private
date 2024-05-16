@@ -9,9 +9,6 @@ import {
   HttpCode,
   Res,
   HttpStatus,
-  HttpException,
-  ParseFilePipeBuilder,
-  BadRequestException,
 } from '@nestjs/common';
 import { RoleService } from './role.service';
 import { ApiBadRequestResponse, ApiOkResponse } from '@nestjs/swagger';
@@ -22,17 +19,11 @@ import {
   UpdateRoleRequest,
 } from 'src/model/role.model';
 import { WebResponse } from 'src/model/web.model';
-import { RoleValidation } from './role.validation';
-import { ValidationService } from 'src/common/validation.service';
-import { Prisma } from '@prisma/client';
 
 @Controller('role')
 export class RoleController {
   prisma: any;
-  constructor(
-    private readonly roleService: RoleService,
-    private validationService: ValidationService,
-  ) {}
+  constructor(private readonly roleService: RoleService) {}
 
   @Post('/create')
   @ApiOkResponse({
@@ -77,8 +68,9 @@ export class RoleController {
   })
   @HttpCode(200)
   async update(@Param('id') id: number, @Body() body: UpdateRoleRequest) {
-    return await this.roleService.update(+id, {
-      name: body.name,
+    return await this.roleService.update({
+      id: +id,
+      ...body,
     });
   }
 
@@ -96,6 +88,7 @@ export class RoleController {
         'RESPONSE-DATA': {
           id: deletedRecord.id,
           name: deletedRecord.name,
+          role_id: deletedRecord.role_id,
           createdAt: deletedRecord.createdAt,
           updatedAt: deletedRecord.updatedAt,
         },

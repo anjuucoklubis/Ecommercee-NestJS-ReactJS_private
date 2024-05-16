@@ -7,23 +7,40 @@ export class CreateRoleRequest {
     description: 'name of the role created',
   })
   name: string;
+
+  @ApiProperty({
+    example: 1,
+    description: 'role id of the role created',
+  })
+  role_id: number;
 }
 
 export class UpdateRoleRequest {
-  @IsOptional()
-  @IsString()
+  @ApiProperty({
+    example: 1,
+    description: 'name of the role updated',
+  })
+  id?: number;
+
+
   @ApiProperty({
     example: 'ADMIN',
     description: 'name of the role updated',
   })
   name?: string;
 
+  @ApiProperty({
+    example: 1,
+    description: 'role id of the role updated',
+  })
+  role_id?: number;
 }
 export class RoleResponse {
   @ApiProperty({
     example: {
       id: 1,
       name: 'ADMIN',
+      role_id : 1
     },
     description: 'Data object example',
   })
@@ -31,6 +48,9 @@ export class RoleResponse {
 
   @ApiProperty()
   name: string;
+
+  @ApiProperty()
+  role_id: number;
 }
 
 export class UnauthorizedResponse {
