@@ -47,6 +47,11 @@ function VMUpdateRole() {
   const handleSubmitUpdateRole = async (event) => {
     event.preventDefault();
     try {
+      if (isNaN(Number(formDataUpdate.role_id))) {
+        toast.error("Role ID harus berupa angka");
+        return;
+      }
+
       const formDataToSend = {
         ...formDataUpdate,
         role_id: Number(formDataUpdate.role_id),
@@ -73,7 +78,7 @@ function VMUpdateRole() {
         updatedData.role_id !== formDataUpdate.name &&
         formDataUpdate.role_id
       ) {
-        toast.success("Role berhasil diubah", {
+        toast.success("Role berhasil diperbarui", {
           position: "top-right",
           onClose: () => {
             window.location.reload();
