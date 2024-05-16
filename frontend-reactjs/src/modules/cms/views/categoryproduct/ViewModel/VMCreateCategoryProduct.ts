@@ -13,7 +13,7 @@ function VMCreateCategoryProduct() {
   const [showModalCreateCategory, setShowModalCreateCateogry] =
     React.useState(false);
 
-  const handleSubmitCreateProduct = async (event) => {
+  const handleSubmitCreateCategoryProduct = async (event) => {
     event.preventDefault();
     try {
       const formDataToSend = new FormData();
@@ -21,7 +21,7 @@ function VMCreateCategoryProduct() {
       if (formData.image) {
         formDataToSend.append("image", formData.image);
       } else {
-        toast.error("Please upload an image file");
+        toast.error("Silakan unggah file gambar");
         return;
       }
 
@@ -38,7 +38,7 @@ function VMCreateCategoryProduct() {
           image: null,
         });
         setShowModalCreateCateogry(false);
-        toast.success("Successfully created", {
+        toast.success("Kategori berhasil dibuat", {
           position: "top-right",
           onClose: () => {
             window.location.reload();
@@ -64,20 +64,14 @@ function VMCreateCategoryProduct() {
       [name]: value,
     });
   };
-  // const handleImageChange = (event) => {
-  //   const file = event.target.files[0];
-  //   setFormData({
-  //     ...formData,
-  //     image: file,
-  //   });
-  // };
+
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     setFormData({ ...formData, image: file ?? null });
   };
 
   return {
-    handleSubmitCreateProduct,
+    handleSubmitCreateCategoryProduct,
     showModalCreateCategory,
     setShowModalCreateCateogry,
     handleInputChange,

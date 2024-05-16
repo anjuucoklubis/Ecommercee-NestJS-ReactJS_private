@@ -16,13 +16,15 @@ import {
   MdOutlineShoppingCart,
   // MdBarChart,
   MdOutlineProductionQuantityLimits,
-  MdGridView
+  MdGridView,
+  MdOutlineManageAccounts,
   // MdPerson,
   // MdLock,
   
 } from "react-icons/md";
 import Product from "./views/product/Product.tsx";
 import CategoryProduct from "./views/categoryproduct/CategoryProduct.tsx";
+import Role from "./views/auth/role/Role.tsx";
 // import AddCategoryProducts from "./views/categoryproduct/AddCategoryProducts.tsx";
 
 const routes = [
@@ -34,14 +36,21 @@ const routes = [
     component: <MainDashboard />,
   },
   {
-    name: "Product",
+    name: "Role",
+    layout: "/admin",
+    path: "role",
+    icon: <MdOutlineManageAccounts className="h-6 w-6" />,
+    component: <Role />,
+  },
+  {
+    name: "Produk",
     layout: "/admin",
     path: "product",
     icon: <MdOutlineProductionQuantityLimits className="h-6 w-6" />,
     component: <Product />,
   },
   {
-    name: "Category Product",
+    name: "Kategori Produk",
     layout: "/admin",
     path: "category",
     icon: <MdGridView className="h-6 w-6" />,

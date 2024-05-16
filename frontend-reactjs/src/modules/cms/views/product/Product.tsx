@@ -95,14 +95,14 @@ function Product() {
                   type="search"
                   id="default-search"
                   className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Search Mockups, Logos..."
+                  placeholder="Cari Produk..."
                   required
                 />
                 <button
                   type="submit"
                   className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
-                  Search
+                  Cari...
                 </button>
               </div>
             </form>
@@ -114,7 +114,7 @@ function Product() {
               className="text-black font-semibold bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
               onClick={() => setShowModalCreateProduct(true)}
             >
-              Tambah Product
+              Tambah Produk
             </button>
           </div>
         </div>
@@ -125,9 +125,17 @@ function Product() {
               <div className="relative min-w-[700px] my-6 mx-auto max-w-screen-xl">
                 <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                   <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                      Detail Product `{getproductDetail.name}`
-                    </h3>
+                    <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+                      Detail Produk
+                    </h2>
+                    <div
+                      className="flex items-center space-x-4"
+                      style={{ marginLeft: 8 }}
+                    >
+                      <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-400">
+                        {getproductDetail.name}
+                      </h3>
+                    </div>
 
                     <button
                       type="button"
@@ -161,7 +169,7 @@ function Product() {
                             htmlFor="name"
                             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                           >
-                            Category Product
+                            Kategori Produk
                           </label>
 
                           <input
@@ -180,7 +188,7 @@ function Product() {
                             htmlFor="name"
                             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                           >
-                            Description
+                            Deskripsi Produk
                           </label>
                           <input
                             type="text"
@@ -198,7 +206,7 @@ function Product() {
                             htmlFor="name"
                             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                           >
-                            Price
+                            Harga Produk
                           </label>
                           <input
                             type="text"
@@ -216,7 +224,7 @@ function Product() {
                             htmlFor="name"
                             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                           >
-                            Stock
+                            Stok Produk
                           </label>
                           <input
                             type="text"
@@ -234,7 +242,7 @@ function Product() {
                             htmlFor="name"
                             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                           >
-                            Created At - Updated At
+                            Dibuat - Diubah
                           </label>
                           <div className="flex items-center justify-center w-full">
                             <input
@@ -255,13 +263,13 @@ function Product() {
                             htmlFor="name"
                             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                           >
-                            Image
+                            Gambar Produk
                           </label>
                           <div className="flex items-center justify-center w-full">
                             <img
                               className="w-64 rounded-lg"
                               src={`${imageSrc}/${getproductDetail.image}`}
-                              alt="image description"
+                              alt="produk.png"
                             />
                           </div>
                         </div>
@@ -281,7 +289,7 @@ function Product() {
                 <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                   <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                      Create New Product
+                      Tambah Produk Baru
                     </h3>
 
                     <button
@@ -319,7 +327,7 @@ function Product() {
                             htmlFor="name"
                             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                           >
-                            Name
+                            Nama Produk
                           </label>
                           <input
                             type="text"
@@ -337,7 +345,7 @@ function Product() {
                             htmlFor="description"
                             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                           >
-                            Description
+                            Deskripsi Produk
                           </label>
                           <input
                             type="text"
@@ -355,7 +363,7 @@ function Product() {
                             htmlFor="categoryId"
                             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                           >
-                            Category
+                            Kategori Produk{" "}
                           </label>
                           {/* Dropdown menggunakan elemen HTML select */}
                           <select
@@ -363,7 +371,7 @@ function Product() {
                             value={selectedCategory}
                             onChange={handleCategoryChange}
                           >
-                            <option value="">Select category</option>
+                            <option value="">Pilih Kategori</option>
                             {/* Map semua kategori menjadi option */}
                             {getAllCategoryforCreateProduct.map((category) => (
                               <option key={category.id} value={category.id}>
@@ -377,7 +385,7 @@ function Product() {
                             htmlFor="price"
                             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                           >
-                            Price
+                            Harga Produk
                           </label>
                           <input
                             type="text"
@@ -395,7 +403,7 @@ function Product() {
                             htmlFor="stock"
                             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                           >
-                            Stock
+                            Stok Produk
                           </label>
                           <input
                             type="text"
@@ -413,7 +421,7 @@ function Product() {
                             htmlFor="image"
                             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                           >
-                            Image
+                            Gambar Produk
                           </label>
                           <div className="flex items-center justify-center w-full">
                             <label
@@ -438,9 +446,9 @@ function Product() {
                                 </svg>
                                 <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
                                   <span className="font-semibold">
-                                    Click to upload
+                                    Klik untuk mengunggah{" "}
                                   </span>{" "}
-                                  or drag and drop
+                                  atau seret dan lepas{" "}
                                 </p>
                                 <p className="text-xs text-gray-500 dark:text-gray-400">
                                   SVG, PNG, JPG or GIF (MAX. 800x400px)
@@ -487,7 +495,7 @@ function Product() {
                             clipRule="evenodd"
                           ></path>
                         </svg>
-                        Add new product
+                        Tambah Produk{" "}
                       </button>
                     </form>
                   </div>
@@ -505,7 +513,7 @@ function Product() {
                 <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                   <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                      Update Category Product
+                      Ubah Produk
                     </h3>
                     <button
                       type="button"
@@ -542,7 +550,7 @@ function Product() {
                             htmlFor="name"
                             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                           >
-                            Name
+                            Nama Produk
                           </label>
                           <input
                             type="text"
@@ -559,7 +567,7 @@ function Product() {
                             htmlFor="name"
                             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                           >
-                            Description
+                            Deskripsi Produk
                           </label>
                           <input
                             type="text"
@@ -576,7 +584,7 @@ function Product() {
                             htmlFor="price"
                             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                           >
-                            Price
+                            Harga Produk
                           </label>
                           <input
                             type="text"
@@ -593,7 +601,7 @@ function Product() {
                             htmlFor="stock"
                             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                           >
-                            Stock
+                            Stok Produk
                           </label>
                           <input
                             type="text"
@@ -610,14 +618,16 @@ function Product() {
                             htmlFor="categoryId"
                             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                           >
-                            Category
+                            Kategory Produk
                           </label>
                           <select
                             className="text-whit bg-gray-50 border border-gray-300 w-full p-2.5 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                             value={selectedCategory}
                             onChange={handleCategoryChange}
                           >
-                            <option value={formDataUpdate.categoryId}>Category Sekarang : {formDataUpdate.categoryId}</option>
+                            <option value={formDataUpdate.categoryId}>
+                              Kategori Sekarang : {formDataUpdate.categoryId}
+                            </option>
                             {getAllCategoryforCreateProduct.map((category) => (
                               <option key={category.id} value={category.id}>
                                 {category.name}
@@ -630,12 +640,12 @@ function Product() {
                             htmlFor="name"
                             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                           >
-                            Image
+                            Gambar Produk
                           </label>
                           <div className="flex items-center justify-center w-full">
                             <label
                               htmlFor="dropzone-file"
-                              className="flex flex-col items-center justify-center w-full h-30 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                              className="flex flex-col items-center justify-center w-full h-22 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                             >
                               <div className="flex flex-col items-center justify-center pt-5 pb-6">
                                 <svg
@@ -655,9 +665,9 @@ function Product() {
                                 </svg>
                                 <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
                                   <span className="font-semibold">
-                                    Click to upload
+                                    Klik untuk mengunggah
                                   </span>{" "}
-                                  or drag and drop
+                                  atau seret dan lepas
                                 </p>
                                 <p className="text-xs text-gray-500 dark:text-gray-400">
                                   SVG, PNG, JPG or GIF (MAX. 800x400px)
@@ -675,11 +685,11 @@ function Product() {
 
                         <div className="col-span-2">
                           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Image Sekarang
+                            Gambar Sekarang
                           </label>
                           <img
                             src={`${imageSrc}/${productDetailForUpdate.image}`}
-                            alt="Preview"
+                            alt="produk.png"
                             className="w-28 mb-2 h-auto max-w-lg rounded-lg"
                           />
                         </div>
@@ -700,7 +710,7 @@ function Product() {
                             clipRule="evenodd"
                           ></path>
                         </svg>
-                        Update category
+                        Ubah Produk
                       </button>
                     </form>
                   </div>
@@ -714,17 +724,17 @@ function Product() {
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" className="px-6 py-3">
-                Name
+                Nama Produk
               </th>
               <th scope="col" className="px-6 py-3">
-                Stock
+                Stok Produk
               </th>
               <th scope="col" className="px-6 py-3">
-                Price
+                Harga Produk
               </th>
 
               <th scope="col" className="px-6 py-3">
-                Action
+                Aksi
               </th>
             </tr>
           </thead>
@@ -786,24 +796,23 @@ function Product() {
                 className="fixed top-0 right-0 bottom-0 left-0 flex items-center justify-center bg-gray-900 bg-opacity-50"
               >
                 <div className="bg-white p-4 rounded-lg">
-                  <h3 className="text-lg font-medium mb-4">
-                    Delete Confirmation
-                  </h3>
+                  <h3 className="text-lg font-medium mb-4">Konfirmasi Hapus</h3>
+
                   <p className="mb-6">
-                    Are you sure you want to delete this item?
+                    Apakah Anda yakin ingin menghapus item ini?
                   </p>
                   <div className="flex justify-end">
                     <button
                       className="text-white bg-red-600 hover:bg-red-700 px-4 py-2 rounded-md mr-2"
                       onClick={handleConfirmDelete}
                     >
-                      Yes, I'm sure
+                      Ya, saya yakin
                     </button>
                     <button
                       className="text-gray-800 bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-md"
                       onClick={handleCancelDelete}
                     >
-                      No, cancel
+                      Tidak, batalkan
                     </button>
                   </div>
                 </div>

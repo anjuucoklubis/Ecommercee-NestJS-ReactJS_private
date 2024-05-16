@@ -9,9 +9,11 @@ import { PrismaService } from './prisma/prisma.service';
 import { ValidationService } from './common/validation.service';
 import { ProductModule } from './product/product.module';
 import { ProductService } from './product/product.service';
+import { LoginModule } from './auth/login/login.module';
+import { RoleModule } from './auth/role/role.module';
 
 @Module({
-  imports: [CategoryproductModule, PrismaModule,CategoryproductModule, ProductModule],
+  imports: [CategoryproductModule, PrismaModule,CategoryproductModule, ProductModule, LoginModule, RoleModule],
   controllers: [AppController, CategoryproductController],
   providers: [AppService, CategoryproductsService, ProductService, PrismaService, ValidationService],
 })

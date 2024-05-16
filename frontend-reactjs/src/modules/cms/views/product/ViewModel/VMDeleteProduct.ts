@@ -25,7 +25,7 @@ function VMDeleteProduct() {
     if (itemToDelete !== null) {
       handleRemoveItem(itemToDelete);
       setItemToDelete(null);
-      toast.success("Successfully deleted", {
+      toast.success("Produk berhasil dihapus", {
         position: "top-right",
         onClose: () => {
           window.location.reload();

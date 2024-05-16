@@ -78,7 +78,7 @@ function VMUpdateCategoryProduct() {
       if (response.ok) {
         console.log("Category updated successfully!");
         setShowModalDetailCategory(false);
-        toast.success("Successfully updated", {
+        toast.success("Kategori berhasil diubah", {
           position: "top-right",
           onClose: () => {
             window.location.reload();

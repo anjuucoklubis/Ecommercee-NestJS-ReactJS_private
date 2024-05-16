@@ -104,7 +104,7 @@ function VMUpdateProduct() {
       if (response.ok) {
         console.log("Category updated successfully!");
         setShowModalDetailProductForUpdate(false);
-        toast.success("Successfully updated", {
+        toast.success("Produk berhasil diubah", {
           position: "top-right",
           onClose: () => {
             window.location.reload();

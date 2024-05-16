@@ -57,7 +57,7 @@ function VMCreateProduct() {
           image: null,
         });
         setShowModalCreateProduct(false);
-        toast.success("Successfully created product", {
+        toast.success("Produk berhasil dibuat", {
           position: "top-right",
           onClose: () => {
             window.location.reload();

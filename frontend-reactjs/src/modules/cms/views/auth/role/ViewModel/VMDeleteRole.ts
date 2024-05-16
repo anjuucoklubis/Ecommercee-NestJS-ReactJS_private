@@ -2,23 +2,20 @@ import { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 
-function VMDeleteCategoryProduct() {
+function VMDeleteRole() {
   const [itemToDelete, setItemToDelete] = useState<number | null>(null);
 
   const handleRemoveItem = async (id: number) => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/categoryproduct/delete/${id}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const response = await fetch(`http://localhost:3000/role/delete/${id}`, {
+        method: "DELETE",
+      });
       if (response.ok) {
       } else {
-        console.error("Failed to delete item:", response.statusText);
+        console.error("Gagal menghapus Role:", response.statusText);
       }
     } catch (error) {
-      console.error("Error deleting item:", error);
+      console.error("Kesalahan menghapus Role:", error);
     }
   };
 
@@ -26,7 +23,7 @@ function VMDeleteCategoryProduct() {
     if (itemToDelete !== null) {
       handleRemoveItem(itemToDelete);
       setItemToDelete(null);
-      toast.success("Kategori berhasil dihapus", {
+      toast.success("Role berhasil dihapus", {
         position: "top-right",
         onClose: () => {
           window.location.reload();
@@ -47,4 +44,4 @@ function VMDeleteCategoryProduct() {
   };
 }
 
-export default VMDeleteCategoryProduct;
+export default VMDeleteRole;

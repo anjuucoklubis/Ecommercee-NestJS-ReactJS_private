@@ -20,8 +20,6 @@ export default function MyRoutes() {
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/detail-product/:productId" element={<DetailProduct />} />
-        {/* <Route path="/detail-product/:productId" element={DetailProduct} /> */}
-
         <Route path="auth/*" element={<AuthLayout />} />
         <Route path="admin/*" element={<AdminLayout />} />
         <Route path="rtl/*" element={<RtlLayout />} />
