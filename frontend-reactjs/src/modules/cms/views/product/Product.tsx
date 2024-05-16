@@ -334,7 +334,7 @@ function Product() {
                             name="name"
                             id="name"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="Type product name"
+                            placeholder="Masukkan Nama Produk..."
                             required
                             value={formDataCreateProduct.name}
                             onChange={handleInputChange}
@@ -352,7 +352,7 @@ function Product() {
                             name="description"
                             id="description"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="Type product description"
+                            placeholder="Masukkan Deskripsi Produk..."
                             required
                             value={formDataCreateProduct.description}
                             onChange={handleInputChange}
@@ -365,14 +365,12 @@ function Product() {
                           >
                             Kategori Produk{" "}
                           </label>
-                          {/* Dropdown menggunakan elemen HTML select */}
                           <select
                             className="text-whit bg-gray-50 border border-gray-300 w-full p-2.5 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                             value={selectedCategory}
                             onChange={handleCategoryChange}
                           >
                             <option value="">Pilih Kategori</option>
-                            {/* Map semua kategori menjadi option */}
                             {getAllCategoryforCreateProduct.map((category) => (
                               <option key={category.id} value={category.id}>
                                 {category.name}
@@ -388,11 +386,11 @@ function Product() {
                             Harga Produk
                           </label>
                           <input
-                            type="text"
+                            type="number"
                             name="price"
                             id="price"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="Type product price"
+                            placeholder="Masukkan Harga Produk..."
                             required
                             value={formDataCreateProduct.price}
                             onChange={handleInputChange}
@@ -406,11 +404,11 @@ function Product() {
                             Stok Produk
                           </label>
                           <input
-                            type="text"
+                            type="number"
                             name="stock"
                             id="stock"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="Type product Stock"
+                            placeholder="Masukkan Stok Produk..."
                             required
                             value={formDataCreateProduct.stock}
                             onChange={handleInputChange}
@@ -587,7 +585,7 @@ function Product() {
                             Harga Produk
                           </label>
                           <input
-                            type="text"
+                            type="number"
                             name="price"
                             id="price"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
@@ -604,7 +602,7 @@ function Product() {
                             Stok Produk
                           </label>
                           <input
-                            type="text"
+                            type="number"
                             name="stock"
                             id="stock"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
