@@ -13,6 +13,7 @@ import {
   HttpStatus,
   HttpException,
   ParseFilePipeBuilder,
+  UseGuards,
 } from '@nestjs/common';
 import { CategoryproductsService } from './categoryproduct.service';
 import { ApiBadRequestResponse, ApiOkResponse } from '@nestjs/swagger';
@@ -26,6 +27,8 @@ import { WebResponse } from 'src/model/web.model';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { StorageUploadCategory } from '../utils/storage-upload';
 import { existsSync, unlinkSync } from 'fs';
+import { AuthGuard } from '@nestjs/passport';
+// import { AuthGuard } from 'src/auth/auth/auth.guard';
 
 const MAX_IMAGE_UPLOAD = 5 * 1024 * 1024;
 
@@ -36,6 +39,7 @@ export class CategoryproductController {
   ) {}
 
   @Post('/create')
+  @UseGuards(AuthGuard())
   @UseInterceptors(FileInterceptor('image', StorageUploadCategory))
   @ApiOkResponse({
     description: 'OK',
@@ -61,10 +65,9 @@ export class CategoryproductController {
         throw new Error('No image file uploaded');
       }
       request.image = file.filename;
-      const result = await this.categoryproductService.create(file,request);
+      const result = await this.categoryproductService.create(file, request);
       return {
         data: result,
-        
       };
     } catch (error) {
       throw new Error('Failed to create category product: ' + error.message);
@@ -80,8 +83,9 @@ export class CategoryproductController {
   findOne(@Param('id') id: number) {
     return this.categoryproductService.findOne(+id);
   }
-  
+
   @Patch('/update/:id')
+  @UseGuards(AuthGuard())
   @ApiOkResponse({
     description: 'OK',
     type: CategoryProductResponse,
@@ -95,7 +99,7 @@ export class CategoryproductController {
   async update(
     @Param('id') id: number,
     @UploadedFile() file: Express.Multer.File,
-    @Body() body: UpdateCategoryProductRequest, 
+    @Body() body: UpdateCategoryProductRequest,
   ) {
     try {
       const categoryId = parseInt(id.toString(), 10);
@@ -152,6 +156,7 @@ export class CategoryproductController {
   }
 
   @Delete('/delete/:id')
+  @UseGuards(AuthGuard())
   async remove(@Param('id') id: number, @Res() response: Response) {
     const deletedRecord = await this.categoryproductService.remove(+id);
 

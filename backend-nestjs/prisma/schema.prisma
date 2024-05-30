@@ -15,7 +15,7 @@ datasource db {
 
 model Role {
   id      Int    @id @default(autoincrement())
-  role_id Int @unique()
+  role_id Int    @unique()
   name    String @db.VarChar(255)
 
   createdAt DateTime @default(now())
@@ -28,17 +28,16 @@ model User {
   id           Int      @id @default(autoincrement())
   first_name   String   @db.VarChar(255)
   last_name    String   @db.VarChar(255)
-  username     String   @unique @db.VarChar(255)
   email        String   @unique @db.VarChar(255)
   password     String   @db.VarChar(255)
-  birt_of_date String   @db.VarChar(255)
-  phone_number String   @db.VarChar(255)
-  image        String   @db.VarChar(255)
+  birt_of_date String?  @db.VarChar(255)
+  phone_number String?  @db.VarChar(255)
+  image        String?  @db.VarChar(255)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  role   Role @relation(fields: [roleId], references: [id])
-  roleId Int
+  role   Role @relation(fields: [roleId], references: [role_id])
+  roleId Int  @default(3)
 
   addresses Address[]
 }

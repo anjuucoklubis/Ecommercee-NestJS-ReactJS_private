@@ -3,6 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import { GetAllCategoryProductForCreateProductInterface } from "../Interface/InterfaceProduct";
 import axios from "axios";
+import { useAxios } from "../../../../../guard/hook.js";
 
 function VMCreateProduct() {
   const [formDataCreateProduct, setFormDataCreateProduct] = useState<{
@@ -43,7 +44,11 @@ function VMCreateProduct() {
         return;
       }
 
+      const token = localStorage.getItem("token");
       const response = await fetch("http://localhost:3000/product/create", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         method: "POST",
         body: formDataToSend,
       });
@@ -89,6 +94,7 @@ function VMCreateProduct() {
     const file = event.target.files?.[0];
     setFormDataCreateProduct({ ...formDataCreateProduct, image: file ?? null });
   };
+  const axios = useAxios();
 
   useEffect(() => {
     const fetchDataCategoryForCreateProduct = async () => {

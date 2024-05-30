@@ -12,6 +12,7 @@ import {
   Post,
   Res,
   UploadedFile,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
@@ -28,6 +29,7 @@ import { WebResponse } from 'src/model/web.model';
 import { existsSync, unlinkSync } from 'fs';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Prisma } from '@prisma/client';
+import { AuthGuard } from '@nestjs/passport';
 
 const MAX_IMAGE_UPLOAD = 5 * 1024 * 1024;
 
@@ -40,6 +42,7 @@ export class ProductController {
   ) {}
 
   @Post('/create')
+  // @UseGuards(AuthGuard())
   @UseInterceptors(FileInterceptor('image', StorageUploadProduct))
   @ApiOkResponse({
     description: 'OK',
@@ -178,6 +181,7 @@ export class ProductController {
   // }
 
   @Patch('/update/:id')
+  // @UseGuards(AuthGuard())
   @ApiOkResponse({
     description: 'OK',
     type: ProductResponse,
@@ -261,6 +265,7 @@ export class ProductController {
   }
 
   @Delete('/delete/:id')
+  // @UseGuards(AuthGuard())
   async remove(@Param('id') id: number, @Res() response: Response) {
     const deletedRecord = await this.productService.remove(+id);
 

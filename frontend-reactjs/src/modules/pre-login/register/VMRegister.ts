@@ -1,37 +1,42 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
+import { FormDataRequestRegisterInterface } from "./RegisterInterface";
 
-function VMLogin() {
-  const [formData, setFormData] = useState<{
-    email: string;
-    password: string;
-  }>({
+function VMRegister() {
+  const [formData, setFormData] = useState<FormDataRequestRegisterInterface>({
+    first_name: "",
+    last_name: "",
     email: "",
     password: "",
   });
 
-  const handleSubmitLogin = async (event) => {
+  const handleSubmitRegistration = async (event) => {
     event.preventDefault();
     try {
       const formDataToSend = {
+        first_name: formData.first_name,
+        last_name: formData.last_name,
         email: formData.email,
         password: formData.password,
       };
-
-      const response = await fetch("http://localhost:3000/login", {
+  
+      const response = await fetch("http://localhost:3000/register", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
         body: JSON.stringify(formDataToSend),
       });
-
+  
       if (response.ok) {
         setFormData({
+          first_name: "",
+          last_name: "",
           email: "",
           password: "",
         });
-        toast.success("Berhasil login", {
+        toast.success("Akun berhasil dibuat", {
           position: "top-right",
           onClose: () => {
             window.location.reload();
@@ -56,6 +61,7 @@ function VMLogin() {
       console.error("Error submitting form:", error);
     }
   };
+  
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -67,10 +73,10 @@ function VMLogin() {
   };
 
   return {
-    handleSubmitLogin,
+    handleSubmitRegistration,
     handleInputChange,
     formData,
   };
 }
 
-export default VMLogin;
+export default VMRegister;

@@ -6,6 +6,7 @@ import {
 } from "./Interface/LandingInterface.ts";
 import React from "react";
 import {useNavigate, useParams} from 'react-router-dom';
+import { useAxios } from "../../../guard/hook.js";
 
 function VMLanding() {
   
@@ -29,7 +30,10 @@ function VMLanding() {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState("");
 
+  const axios = useAxios();
+
   const getDataProduct = async () => {
+
     await axios.get("http://localhost:3000/product/get").then((response) => {
       console.log(response.data);
       setProducts(response.data);

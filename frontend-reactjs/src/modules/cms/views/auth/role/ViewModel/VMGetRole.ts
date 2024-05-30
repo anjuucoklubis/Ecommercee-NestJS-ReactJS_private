@@ -1,9 +1,10 @@
-import axios from "axios";
+// import axios from "axios";
 import { useEffect, useState } from "react";
 import {
   GetRoleAllInterface,
   GetRoleDetailInterface,
 } from "../Interface/InterfaceRole";
+import { useAxios } from "../../../../../../guard/hook.js";
 
 function VMGetRole() {
   const [roles, setRoles] = useState<GetRoleAllInterface[]>([]);
@@ -11,6 +12,7 @@ function VMGetRole() {
     useState<GetRoleDetailInterface | null>(null);
   const [roleId, setRoleId] = useState<number | null>(null);
   const [showModalViewDetailRole, setShowModalViewDetailRole] = useState(false);
+  const axios = useAxios();
 
   useEffect(() => {
     const fetchData = async () => {

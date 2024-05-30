@@ -4,6 +4,7 @@ import {
   GetCategoryProductAllInterface,
   GetCategoryProductDetailInterface,
 } from "../Interface/InterfaceCategoryProduct";
+import { useAxios } from "../../../../../guard/hook.js";
 
 function VMGetCategoryProduct() {
   const [categories, setCategories] = useState<
@@ -14,6 +15,7 @@ function VMGetCategoryProduct() {
   const [categoryId, setCategoryId] = useState<number | null>(null);
   const [showModalViewDetailCategory, setShowModalViewDetailCategory] =
     useState(false);
+    const axios = useAxios();
 
   useEffect(() => {
     const fetchData = async () => {

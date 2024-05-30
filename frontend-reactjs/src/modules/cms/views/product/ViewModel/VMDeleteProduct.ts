@@ -5,10 +5,15 @@ function VMDeleteProduct() {
   const [itemToDelete, setItemToDelete] = useState<number | null>(null);
 
   const handleRemoveItem = async (id: number) => {
+    const token = localStorage.getItem("token");
+
     try {
       const response = await fetch(
         `http://localhost:3000/product/delete/${id}`,
         {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
           method: "DELETE",
         }
       );

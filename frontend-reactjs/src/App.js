@@ -1,9 +1,15 @@
 import "./App.css";
-import MyRoutes from "./routes/MyRoutes.js";
+import { AuthProvider } from "./guard/AuthContext";
+import MyRoutes from "./routes/MyRoutes";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   return (
-    <MyRoutes/>
+    <Router>
+      <AuthProvider>
+        <MyRoutes />
+      </AuthProvider>
+    </Router>
   );
 }
 

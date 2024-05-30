@@ -1,102 +1,92 @@
+// import InputField from "components/fields/InputField";
+import InputField from "../../cms/components/fields/InputField.tsx";
+import { FcGoogle } from "react-icons/fc";
+// import Checkbox from "components/checkbox";
+import Checkbox from "../../cms/components/checkbox/Checkbox.tsx";
 import React from "react";
-import logo from "../../../../src/assets/logo.png";
-export default function Login() {
-  return (
-    <div>
-      <section className="bg-gray-50 dark:bg-gray-900">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          <a
-            href="#"
-            className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
-          >
-            <img className="w-25 h-18 mr-2" src={logo} alt="logo" />
-          </a>
-          <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                Masuk ke akun Anda
-              </h1>
-              <form className="space-y-4 md:space-y-6" action="#">
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="email@gmail.com"
-                    required
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="password"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >
-                    Kata Sandi
-                  </label>
-                  <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="••••••••"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required
-                  />
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-start">
-                    <div className="flex items-center h-5">
-                      <input
-                        id="remember"
-                        aria-describedby="remember"
-                        type="checkbox"
-                        className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                        required
-                      />
-                    </div>
-                    <div className="ml-3 text-sm">
-                      <label
-                        htmlFor="remember"
-                        className="text-gray-500 dark:text-gray-300"
-                      >
-                        Ingat saya
-                      </label>
-                    </div>
-                  </div>
-                  <a
-                    href="#"
-                    className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
-                  >
-                    Forgot password?
-                  </a>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full text-white  bg-blue-700 hover:bg-blue-8000 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                >
-                  Sign in
-                </button>
+import VMLogin from "./VMLogin.ts";
 
-                <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                  Belum punya akun?{" "}
-                  <a
-                    href="#"
-                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                  >
-                    Daftar{" "}
-                  </a>
-                </p>
-              </form>
-            </div>
+export default function Login() {
+  const { handleSubmitLogin, handleInputChange, formData } = VMLogin();
+  return (
+    <div className="mt-16 mb-16 flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
+      {/* Sign in section */}
+      <div className="mt-[10vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
+        <h4 className="mb-2.5 text-4xl font-bold text-navy-700 dark:text-white">
+          Masuk
+        </h4>
+        <p className="mb-9 ml-1 text-base text-gray-600">
+          Masukkan email dan kata sandi Anda untuk masuk!
+        </p>
+        {/* <div className="mb-6 flex h-[50px] w-full items-center justify-center gap-2 rounded-xl bg-lightPrimary hover:cursor-pointer dark:bg-navy-800">
+          <div className="rounded-full text-xl">
+            <FcGoogle />
           </div>
+          <h5 className="text-sm font-medium text-navy-700 dark:text-white">
+            Sign In with Google
+          </h5>
         </div>
-      </section>
+        <div className="mb-6 flex items-center  gap-3">
+          <div className="h-px w-full bg-gray-200 dark:bg-navy-700" />
+          <p className="text-base text-gray-600 dark:text-white"> or </p>
+          <div className="h-px w-full bg-gray-200 dark:bg-navy-700" />
+        </div> */}
+        {/* Email */}
+        <form onSubmit={handleSubmitLogin}>
+          <InputField
+            variant="auth"
+            extra="mb-3"
+            label="Email*"
+            placeholder="mail@simmmple.com"
+            id="email"
+            type="text"
+            required
+            name="email"
+            onChange={handleInputChange}
+          />
+
+          {/* Password */}
+          <InputField
+            variant="auth"
+            extra="mb-3"
+            label="Password*"
+            placeholder="Min. 8 characters"
+            id="password"
+            type="password"
+            required
+            name="password"
+            onChange={handleInputChange}
+          />
+          {/* Checkbox */}
+          <div className="mb-4 flex items-center justify-between px-2">
+            <div className="flex items-center">
+              <Checkbox />
+              <p className="ml-2 text-sm font-medium text-navy-700 dark:text-white">
+                Keep me logged In
+              </p>
+            </div>
+            <a
+              className="text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white"
+              href=" "
+            >
+              Forgot Password?
+            </a>
+          </div>
+          <button className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+            Sign In
+          </button>
+        </form>
+        <div className="mt-4">
+          <span className=" text-sm font-medium text-navy-700 dark:text-gray-600">
+            Belum terdaftar? 
+          </span>
+          <a
+            href="/auth/sign-up"
+            className="ml-1 text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white text-blue-600 underline"
+          >
+Daftar          </a>
+        </div>
+      </div>
     </div>
   );
 }

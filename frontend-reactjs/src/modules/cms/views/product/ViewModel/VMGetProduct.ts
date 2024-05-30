@@ -4,6 +4,7 @@ import {
   GetAllProductInterface,
   GetDetailProductInterface,
 } from "../Interface/InterfaceProduct";
+import { useAxios } from "../../../../../guard/hook.js";
 
 function VMGetProduct() {
   const [product, setProduct] = useState<GetAllProductInterface[]>([]);
@@ -13,11 +14,17 @@ function VMGetProduct() {
   const [showModalViewDetailProduct, setShowModalViewDetailProduct] =
     useState(false);
   const [combinedDate, setCombinedDate] = useState<string>("");
+  const axios = useAxios();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/product/get");
+        const token = localStorage.getItem("token");
+        const response = await axios.get("http://localhost:3000/product/get", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         const formattedData = response.data.map((item: any) => ({
           ...item,
@@ -37,8 +44,14 @@ function VMGetProduct() {
   const getProductByID = async (productId: number) => {
     try {
       setProductId(productId);
+      const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:3000/product/get/${productId}`
+        `http://localhost:3000/product/get/${productId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       if (!response.ok) {
         throw new Error("Failed to fetch product detail");

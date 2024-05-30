@@ -6,6 +6,7 @@ import {
   GetDetailProductShowModalForUpdateInteface,
 } from "../Interface/InterfaceProduct";
 import axios from "axios";
+import { useAxios } from "../../../../../guard/hook.js";
 function VMUpdateProduct() {
   const [productId, setProductId] = useState<number | null>(null);
 
@@ -92,10 +93,14 @@ function VMUpdateProduct() {
       if (formDataUpdate.image instanceof File) {
         formData.append("image", formDataUpdate.image);
       }
+      const token = localStorage.getItem("token");
 
       const response = await fetch(
         `http://localhost:3000/product/update/${productId}`,
         {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
           method: "PATCH",
           body: formData,
           credentials: "include",
@@ -117,12 +122,20 @@ function VMUpdateProduct() {
       console.error("Error updating category:", error);
     }
   };
+  const axios = useAxios();
 
   useEffect(() => {
     const fetchDataCategoryForUpdateProduct = async () => {
       try {
+        const token = localStorage.getItem("token");
+
         const response = await axios.get(
-          "http://localhost:3000/categoryproduct/get"
+          "http://localhost:3000/categoryproduct/get",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
 
         const formattedData = response.data.map((item: any) => ({
